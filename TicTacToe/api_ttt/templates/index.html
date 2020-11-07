@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TicTacToe_Game</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-debug.js"></script>
+     <script>
+        {% include 'Game.js' %}
+    </script>
+
+    <style>
+        * {
+        margin: 1;
+        padding: 3;
+        font-family: sans-serif;
+        }
+
+        .main {
+        background: linear-gradient(to right, #8a47b0, #9ecdff);
+        }
+        .table{
+            border-collapse: separate;
+            border: 1px solid black;
+            margin: 25px 25px;
+            font-size: 1,5em;
+            font-family: sans-serif;
+            text-align: center;
+            table-layout: fixed;
+            width: 200px;
+            height: 200px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        td {
+            border: 1px solid;
+        }
+        h1{
+            text-align: center;
+        }
+        p {
+            font-size: 16px;
+            line-height: 24px;
+            margin: 0 0 12px;
+            text-indent:1em;
+            text-align:justify;
+        }
+        .input{
+          border-radius: 4px;
+          background-color: white;
+          color: black;
+          }
+    </style>
+
+</head>
+<body class="main">
+    <div>
+        <h1>Tic-Tac-Toe Game!</h1>
+        <p> 1. The game is played on a grid that's 3 squares by 3 squares. </p>
+        <p> 2. You are X, other player (in our case it is computer) is O. Players take turns putting their marks in empty squares. </p>
+        <p> 3. The first player that gets 3 marks in a row (up, down, across, or diagonally) is the winner. </p>
+        <p> 4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a draw. </p>
+    </div>
+
+    <div>
+        <p> You can write number in the special field or you can just click on the cell.</p>
+    </div>
+     <div>
+    <center>
+        <button class="but" data-bind="click : move.bind($data, 'X')">X</button>
+        <button class="but" data-bind="click : move.bind($data, 'O')">O</button>
+    </center>
+     </div>
+        <br>
+        <div class="loader">
+            <center>
+            <table class="table" id="table">
+                <caption>Game field:</caption>
+            <tr>
+                <td data-bind="click : td0.bind($data, 0)" ><span data-bind="text : cell()[0]" ></span></td>
+                <td data-bind="click : td0.bind($data, 1)"> <span data-bind="text : cell()[1]"></span></td>
+                <td data-bind="click : td0.bind($data, 2)"> <span data-bind="text : cell()[2]"></span></td>
+            </tr>
+
+            <tr>
+                <td data-bind="click : td0.bind($data, 3)"> <span data-bind="text : cell()[3]"></span> </td>
+                <td data-bind="click : td0.bind($data, 4)"><span data-bind="text : cell()[4]"></span> </td>
+                <td data-bind="click : td0.bind($data, 5)"><span data-bind="text : cell()[5]"></span></td>
+            </tr>
+
+            <tr>
+                <td data-bind="click : td0.bind($data, 6)"><span data-bind="text : cell()[6]"></span> </td>
+                <td data-bind="click : td0.bind($data, 7)"> <span data-bind="text : cell()[7]"></span> </td>
+                <td data-bind="click : td0.bind($data, 8)"><span data-bind="text : cell()[8]"></span></td>
+            </tr>
+
+            </table>
+                </center>
+            <br>
+        <div>
+            <center>
+            <input class="input" type="number" min="0" max="8" data-bind="value : input" placeholder="Num"/>
+            <button data-bind="click : submit">Submit</button>
+        </center>
+        </div>
+
+</div>
+
+</body>
+</html>
