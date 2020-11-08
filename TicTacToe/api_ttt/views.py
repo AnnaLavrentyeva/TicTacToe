@@ -5,6 +5,7 @@ import random
 
 from django.views.decorators.csrf import csrf_exempt
 
+#All win positions
 win_positions = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
                     [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
@@ -49,8 +50,7 @@ def game(request):
 
         cell = pc_move(cell)
 
-        winner = 0
-        return JsonResponse({'cell': cell, 'winner': winner})
+        return JsonResponse({'cell': cell})
 
 def pc_move(cell):
     while True:
