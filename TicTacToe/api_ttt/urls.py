@@ -10,6 +10,7 @@ urlpatterns = [
    # url(r'^admin/', admin.site.urls),
     url(r'^index/', views.index),
     url(r'^home/', views.home),
+    path('', views.home),
     path('create-game-x', game_create_view_x),
     path('create-game-o', game_create_view_o),
    # url(r'^movement', views.movement),
