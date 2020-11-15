@@ -17,12 +17,12 @@
 <center>
 <div class="row mb-3">
   <div class="col-md-4 mx-auto col-10">
-   <form class="form" id="game-create-form-x" method="GET" action="/create-game-x">
+   <form class="form" id="game-create-form-x" method="POST" action="/create-game-x">
     {% csrf_token %}
     <button type="submit" class="btn btn-primary" id="buttonX" >X</button>
    </form>
 <br/>
-       <form class="form" id="game-create-form-o" method="GET" action="/create-game-o">
+       <form class="form" id="game-create-form-o" method="POST" action="/create-game-o">
     {% csrf_token %}
     <button type="submit" class="btn btn-primary" id="buttonO" >O</button>
 
