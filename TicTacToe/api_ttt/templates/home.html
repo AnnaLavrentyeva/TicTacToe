@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+ Tic Tac Toe
+{% endblock head_title %}
+
+{% block content %}
+
+<div class='row text-center'>
+  <div class='col'>
+   <h3> Welcome to my game!</h3>
+   <h4> Press X or O to start.</h4>
+  </div>
+
+</div>
+
+<center>
+<div class="row mb-3">
+  <div class="col-md-4 mx-auto col-10">
+   <form class="form" id="game-create-form-x" method="GET" action="/create-game-x">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary" id="buttonX" >X</button>
+   </form>
+
+       <form class="form" id="game-create-form-o" method="GET" action="/create-game-o">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary" id="buttonO" >O</button>
+
+   </form>
+
+  </div>
+</div>
+    </center>
+
+<div class='row' id="tweets">
+ Put game here...
+</div>
+
+
+{% endblock content %}

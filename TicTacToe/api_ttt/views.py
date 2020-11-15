@@ -12,16 +12,17 @@ win_positions = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
 def index(request):
    return render(request,'index.html',{})
 
-# @csrf_exempt
-# def movement(request):
-#     if request.method == 'POST':
-#         body_unicode = request.body.decode('utf-8')
-#         body = json.loads(body_unicode)
-#
-#         return JsonResponse({})
+def home(request):
+   return render(request,'home.html',{})
+
+def game_create_view_x(request):
+    return render(request, 'index_x.html', {})
+
+def game_create_view_o(request):
+    return render(request, 'index.html', {})
 
 @csrf_exempt
-def game(request):
+def game_x(request):
     if request.method == 'PUT':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
@@ -48,17 +49,50 @@ def game(request):
             winner = 'Draw'
             return JsonResponse({'winner': winner})
 
-        cell = pc_move(cell)
+        cell = pc_move(cell, 'O')
 
         return JsonResponse({'cell': cell})
 
-def pc_move(cell):
+@csrf_exempt
+def game_o(request):
+    if request.method == 'PUT':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        value = int(body['value'])
+        cell = body['x']
+
+        if (value >=9 or value < 0):
+            return JsonResponse({'wrong_cell': 'true'})
+
+        if cell[value] != 'X' and cell[value] != 'O':
+            cell[value] = 'O'
+        else:
+            return JsonResponse({'wrong_cell': 'true'})
+
+        if checkWinner(cell, 'X') == True:
+            winner = 'X'
+            return JsonResponse({'winner': winner})
+
+        if checkWinner(cell, 'O') == True:
+            winner = 'O'
+            return JsonResponse({'winner': winner})
+
+        if cell and all(elem == "X" or elem == 'O' for elem in cell):
+            winner = 'Draw'
+            return JsonResponse({'winner': winner})
+
+        cell = pc_move(cell, 'X')
+
+        return JsonResponse({'cell': cell})
+
+
+def pc_move(cell, char):
     while True:
         random.seed()
         move = random.randint(0, 8)
 
         if cell[move] != 'X' and cell[move] != 'O':
-            cell[move] = 'O'
+            cell[move] = char
             return cell
 
 def checkWinner(cell, sign):

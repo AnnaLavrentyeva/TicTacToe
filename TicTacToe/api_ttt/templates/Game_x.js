@@ -9,7 +9,7 @@ function StartGame() {
   that.td0 = function(n){
   $.ajax({
           type: 'PUT',
-          url: '/game_o',
+          url: '/game_x',
           data: ko.toJSON({
           value : n,
           x : that.cell()
@@ -49,7 +49,7 @@ function StartGame() {
   that.submit = function() {
       $.ajax({
           type: 'PUT',
-          url: '/game_o',
+          url: '/game_x',
           data: ko.toJSON({
           value : that.input(),
           x : that.cell()
